@@ -23,7 +23,7 @@ int main(){
         }
     }
     for(int i=1;i<=n;++i){
-        for(int j=0;j<16;++j){
+        for(int j=0;j<(1<<4);++j){
             int T = Getvalue(i-1,j);
             if(oke[j]){
                 for(int z = 0;z<16;z++){
