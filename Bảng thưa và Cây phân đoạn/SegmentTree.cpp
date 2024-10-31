@@ -28,10 +28,10 @@ int main(){
     cin >> n >> q;
     vector<int> a(n);
     for(auto &x:a) cin >> x;
-    vector<int> b = SegmentTree(a,n);
+    vector<int> p = SegmentTree(a,n);
     while(q--){
         int l,r;
         cin >> l >> r;
-        cout << FindSegmentTree(b,0,n-1,l-1,r-1,0) << endl;
+        cout << FindSegmentTree(p,0,n-1,l-1,r-1,0) << endl;
     }
 }
