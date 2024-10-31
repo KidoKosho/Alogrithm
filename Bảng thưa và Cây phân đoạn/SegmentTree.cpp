@@ -17,11 +17,11 @@ vector<int> SegmentTree(const vector<int> a,int n){
     buildSegmentTree(a,p,0,n-1,0);
     return p;
 }
-int FindSegmentTree(const vector<int> &p,int l,int r,int st,int en,int pos){
-    if(st <= l && r <= en) return p[pos];
-    if(st>r||l > en) return INT_MIN;
+int FindSegmentTree(const vector<int> &p,int l1,int r1,int l,int r,int pos){
+    if(l <= l1 && r1 <= r) return p[pos];
+    if(l>r1||l1 > r) return INT_MIN;
     int mid = (l+r)/2;
-    return max(FindSegmentTree(p,l,mid,st,en,2*pos+1),FindSegmentTree(p,mid+1,r,st,en,2*pos+2));
+    return max(FindSegmentTree(p,l1,mid,l,r,2*pos+1),FindSegmentTree(p,mid+1,r1,l,r,2*pos+2));
 }
 int main(){
     int n,q;
