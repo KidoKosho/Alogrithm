@@ -8,9 +8,9 @@ int DP_Bitmask(const vector<vector<int>> &a,const int n,const int start){
 	for(int mask = 1 ; mask < (1<<n);++mask){
 		for(int i=0;i<n;++i){// check xem diem i co trong day khong
 			if(mask&(1<<i)){
-				for( int u = 0;u<n;++u){// check xem diem u co trong day khong
-					if(!(mask&(1<<u))){
-						dp[mask|(1<<u)][u] = min(dp[mask|(1<<u)][u],dp[mask][i]+a[i][u]);
+				for( int u = 0;u<n;++u){// check xem diem u k co trong day khong
+					if((mask&(1<<u))){
+						dp[mask][u] = min(dp[mask][u],dp[mask][i]+a[i][u]);
 					}
 				}
 			}

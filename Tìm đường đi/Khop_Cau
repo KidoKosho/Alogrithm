@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 100010;
+vector<int> adj[N];
+int num[N], low[N];
+bool isCut[N];
+bool bridge[N];
+int numChild[N];
+int cnt = 0;
+
+void dfs(int u, int parent) {
+    num[u] = low[u] = ++cnt;
+    for (int v : adj[u]) {
+        if (v == parent) continue;
+        if (!num[v]) {
+            numChild[u]++;
+            dfs(v, u);
+            low[u] = min(low[u], low[v]);
+            if (parent != -1 && low[v] >= num[u]) isCut[u] = true;
+            if (low[v] > num[u]) bridge[v] = true;
+        } else {
+            low[u] = min(low[u], num[v]);
+        }
+    }
+
+    if (parent == -1 && numChild[u]>=2) {
+         isCut[u] = true;
+    }
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    for (int i = 1; i <= n; i++) {
+        if (!num[i]) dfs(i, -1);
+    }
+    int count = 0;
+    for (int i = 1; i <= n; i++) if (isCut[i]) count++;;
+    cout << count << " ";
+
+    count= 0;
+    for (int i = 1; i <= n; i++) if (bridge[i]) count++;
+    cout << count;
+
+    return 0;
+}

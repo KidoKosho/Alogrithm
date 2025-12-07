@@ -7,8 +7,8 @@ int main(){
     for(auto &x:a) cin >> x;
     int b[n+5][17];
     for(int i=0;i<n;++i) b[i][0] = a[i];
-    for(int j =1;(1<<j)<n;++j){
-        for(int i=0;i+(1<<j) <=n;++i){
+    for(int j =1;(1<<j)<=n;++j){
+        for(int i=0;i+(1<<j) <=n;++i){ // cẩn thân <= n  nếu i = 1 thì n sẽ là n+1 cthuc là (độ dài dãy) + vị trí đầu
             b[i][j] = max(b[i][j-1],b[i+(1<<(j-1))][j-1]);
         }
     }

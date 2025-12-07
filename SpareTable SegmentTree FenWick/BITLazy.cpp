@@ -18,6 +18,20 @@ struct BIT {
         for(; i > 0; i -= i & -i) s += f[i];
         return s;
     }
+    int find_kth(int k) {
+        int idx = 0;
+        int mask = 1;
+        while(mask <= n) mask <<= 1;
+        mask >>= 1;
+        for(; mask; mask >>= 1) {
+            int next = idx + mask;
+            if(next <= n && f[next] < k) {
+                idx = next;
+                k -= f[next];
+            }
+        }
+        return idx + 1;
+    }
 };
 
 struct BIT_RangeUpdate_RangeQuery {

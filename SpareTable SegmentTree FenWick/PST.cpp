@@ -22,7 +22,6 @@ Node* update(Node* prev, int l, int r, int val) {
     int sum = (left ? left->cnt : 0) + (right ? right->cnt : 0);
     return new Node(sum, left, right);
 }
-
 // ===== QUERY: ĐẾM SỐ PHẦN TỬ <= w =====
 int query(Node* node, int l, int r, int ql, int qr) {
     if (!node || qr < l || r < ql) return 0;
