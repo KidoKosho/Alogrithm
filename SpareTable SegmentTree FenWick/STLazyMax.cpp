@@ -1,6 +1,11 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+
+/**
+ * Segment Tree Lazy Propagation cho bài toán tìm Giá trị Lớn nhất (Range Max Query & Range Add)
+ */
+
 struct SegmentTreeMax {
     int n;
     vector<ll> st, lazy;
@@ -40,3 +45,18 @@ struct SegmentTreeMax {
     void update(int l,int r,ll val){update(1,1,n,l,r,val);}
     ll query(int l,int r){return query(1,1,n,l,r);}
 };
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n = 5;
+    vector<ll> a = {0, 1, 3, 2, 7, 9};
+    SegmentTreeMax st(n);
+    st.build(a);
+
+    cout << "Max [2..4]: " << st.query(2, 4) << "\n";
+    st.update(2, 3, 5); // Cong 5 vao doan [2..3]
+    cout << "Max [2..4] sau khi update: " << st.query(2, 4) << "\n";
+    return 0;
+}

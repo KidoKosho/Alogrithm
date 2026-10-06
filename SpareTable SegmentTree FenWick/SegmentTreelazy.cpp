@@ -2,9 +2,14 @@
 using namespace std;
 using ll = long long;
 
+/**
+ * Segment Tree với kỹ thuật Trì hoãn (Lazy Propagation) - Tính Tổng Đoạn
+ * Độ phức tạp: O(log N) cho cả Range Update và Range Query
+ */
+
 struct SegmentTree {
     int n;
-    vector<ll> st, lazy;  // st = segment tree, lazy = mảng trì hoãn
+    vector<ll> st, lazy;
 
     SegmentTree(int n = 0) { init(n); }
 
@@ -13,7 +18,6 @@ struct SegmentTree {
         st.assign(4 * n, 0);
         lazy.assign(4 * n, 0);
     }
-
     void build(vector<ll> &a, int id, int l, int r) {
         if (l == r) {
             st[id] = a[l];
@@ -24,7 +28,6 @@ struct SegmentTree {
         build(a, id * 2 + 1, mid + 1, r);
         st[id] = st[id * 2] + st[id * 2 + 1];
     }
-
     void build(vector<ll> &a) { build(a, 1, 1, n); }
 
     void down(int id, int l, int r) {
@@ -63,10 +66,10 @@ struct SegmentTree {
         return get(id * 2, l, mid, u, v) + get(id * 2 + 1, mid + 1, r, u, v);
     }
 
-    // wrapper functions
     void update(int l, int r, ll val) { update(1, 1, n, l, r, val); }
     ll query(int l, int r) { return get(1, 1, n, l, r); }
 };
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -77,9 +80,8 @@ int main() {
     seg.build(a);
 
     cout << seg.query(2, 5) << "\n"; // sum(2..5) = 2+3+4+5=14
-
     seg.update(3, 6, 10);            // cộng 10 vào đoạn [3..6]
     cout << seg.query(2, 5) << "\n"; // 2+(3+10)+(4+10)+(5+10)=44
-
     cout << seg.query(1, 8) << "\n"; // tổng toàn bộ
+    return 0;
 }

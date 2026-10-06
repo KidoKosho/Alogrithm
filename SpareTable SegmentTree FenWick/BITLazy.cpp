@@ -2,6 +2,11 @@
 using namespace std;
 using ll = long long;
 
+/**
+ * Fenwick Tree (Binary Indexed Tree) hỗ trợ Cập nhật đoạn & Truy vấn đoạn (Range Update - Range Query)
+ * Độ phức tạp: O(log N) cho cả update và query
+ */
+
 struct BIT {
     int n;
     vector<ll> f;
@@ -43,7 +48,6 @@ struct BIT_RangeUpdate_RangeQuery {
         B1.init(n);
         B2.init(n);
     }
-    // add v to [l,r]
     void add_range(int l, int r, ll v){
         if(l > r) return;
         B1.add(l, v);
@@ -51,14 +55,37 @@ struct BIT_RangeUpdate_RangeQuery {
         B2.add(l, v*(l-1));
         B2.add(r+1, -v*r);
     }
-    // prefix sum of [1..x]
     ll prefix_sum(int x){
         if(x <= 0) return 0;
         return B1.sum(x) * x - B2.sum(x);
     }
-    // sum of [l..r]
     ll range_sum(int l, int r){
         if(l > r) return 0;
         return prefix_sum(r) - prefix_sum(l-1);
     }
 };
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n, q;
+    if (!(cin >> n >> q)) return 0;
+
+    BIT_RangeUpdate_RangeQuery bit(n);
+    while (q--) {
+        int type;
+        cin >> type;
+        if (type == 1) {
+            int l, r;
+            ll v;
+            cin >> l >> r >> v;
+            bit.add_range(l, r, v);
+        } else {
+            int l, r;
+            cin >> l >> r;
+            cout << bit.range_sum(l, r) << "\n";
+        }
+    }
+    return 0;
+}
