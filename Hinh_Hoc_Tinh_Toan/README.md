@@ -8,4 +8,4 @@ Thư mục này chứa các thuật toán và cấu trúc hình học tính toá
 
 | Tên file | Thuật toán | Độ phức tạp thời gian | Bộ nhớ | Tác dụng & Khi nào nên sử dụng |
 | :--- | :--- | :--- | :--- | :--- |
-| **`ConvexHull.cpp`** | Bao lồi 2D (Monotone Chain / Andrew) | $\mathcal{O}(N \log N)$ | $\mathcal{O}(N)$ | Tìm tập đa giác lồi nhỏ nhất bao phủ $N$ điểm trên mặt phẳng 2D. Cung cấp hàm tính **chu vi** và **diện tích** đa giác lồi (Shoelace Formula). |
+| **`ConvexHull.cpp`** | Bao lồi 2D (Monotone Chain / Andrew) | O(N log N) | O(N) | Tìm tập đa giác lồi nhỏ nhất bao phủ N điểm trên mặt phẳng 2D. Cung cấp hàm tính **chu vi** và **diện tích** đa giác lồi (Shoelace Formula). |
