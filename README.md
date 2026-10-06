@@ -1,6 +1,6 @@
 # 📚 THƯ VIỆN THUẬT TOÁN VÀ CẤU TRÚC DỮ LIỆU C++ (CP CHEATSHEET)
 
-Kho lưu trữ toàn diện các thuật toán và cấu trúc dữ liệu kinh điển chuẩn thi đấu **Lập trình thi đấu (Competitive Programming - VNOI, Codeforces, ICPC, HSG)** và **Phỏng vấn Kỹ thuật**.
+Kho lưu trữ toàn diện các thuật toán và cấu trúc dữ liệu kinh điển dành cho **Lập trình thi đấu (Competitive Programming - VNOI, Codeforces, ICPC, HSG)** và **Phỏng vấn Kỹ thuật**.
 
 ---
 
@@ -10,9 +10,9 @@ Kho lưu trữ toàn diện các thuật toán và cấu trúc dữ liệu kinh 
 2. [Cây & Cây Khung Nhỏ Nhất (MST)](#2-cây--cây-khung-nhỏ-nhất-mst)
 3. [Tính Liên Thông Đồ Thị (SCC, Khớp, Cầu)](#3-tính-liên-thông-đồ-thị)
 4. [Luồng Trên Đồ Thị & Cặp Ghép](#4-luồng-trên-đồ-thị--cặp-ghép)
-5. [Cấu Trúc Dữ Liệu & Truy Vấn Đoạn](#5-cấu-trúc-dữ-liệu--truy-vấn-đoạn)
+5. [Cấu Trúc Dữ Liệu (SpareTable SegmentTree FenWick)](#5-cấu-trúc-dữ-liệu-sparetable-segmenttree-fenwick)
 6. [Thuật Toán Xử Lý Chuỗi (String)](#6-thuật-toán-xử-lý-chuỗi)
-7. [Quy Hoạch Động (Dynamic Programming)](#7-quy-hoạch-động)
+7. [Quy Hoạch Động (Dp_bitmask)](#7-quy-hoạch-động-dp_bitmask)
 8. [Hình Học Tính Toán (Geometry)](#8-hình-học-tính-toán)
 
 ---
@@ -73,21 +73,21 @@ Kho lưu trữ toàn diện các thuật toán và cấu trúc dữ liệu kinh 
 
 ---
 
-## 5. Cấu Trúc Dữ Liệu & Truy Vấn Đoạn
+## 5. Cấu Trúc Dữ Liệu (SpareTable SegmentTree FenWick)
 
-📂 **Thư mục:** [`./Cau_Truc_Du_Lieu`](./Cau_Truc_Du_Lieu/README.md)
+📂 **Thư mục:** [`./SpareTable SegmentTree FenWick`](./SpareTable%20SegmentTree%20FenWick/README.md)
 
 | File mã nguồn | Cấu trúc dữ liệu | Độ phức tạp thời gian | Bộ nhớ | Khi nào nên dùng & Dấu hiệu bài toán |
 | :--- | :--- | :--- | :--- | :--- |
-| [`Fenwick_BIT.cpp`](./Cau_Truc_Du_Lieu/Fenwick_BIT.cpp) | Fenwick Tree (BIT) cơ bản | Cập nhật điểm: $\mathcal{O}(\log N)$<br>Truy vấn tổng: $\mathcal{O}(\log N)$ | $\mathcal{O}(N)$ | • Tính tổng tiền tố, đếm số nghịch thế (Inversions) trong mảng.<br>• Tiết kiệm bộ nhớ gấp 4 lần và cài đặt nhanh gấp 3 lần Segment Tree. |
-| [`BITLazy.cpp`](./Cau_Truc_Du_Lieu/BITLazy.cpp) | Fenwick Range Update Range Query | $\mathcal{O}(\log N)$ cho cả update & query | $\mathcal{O}(N)$ | • Cộng giá trị vào đoạn $[L, R]$ và tính tổng đoạn $[L, R]$ với bộ nhớ cực nhẹ. |
-| [`SegmentTree.cpp`](./Cau_Truc_Du_Lieu/SegmentTree.cpp) | Segment Tree cơ bản | $\mathcal{O}(\log N)$ cho update/query | $\mathcal{O}(4N)$ | • Cập nhật giá trị 1 phần tử và truy vấn Max/Min/Sum/GCD trên đoạn $[L, R]$. |
-| [`SegmentTreelazy.cpp`](./Cau_Truc_Du_Lieu/SegmentTreelazy.cpp) | Segment Tree Lazy (Tổng) | $\mathcal{O}(\log N)$ cho Range Update/Query | $\mathcal{O}(4N)$ | • Cộng giá trị vào đoạn $[L, R]$ và tính tổng đoạn $[L, R]$. |
-| [`STLazyMax.cpp`](./Cau_Truc_Du_Lieu/STLazyMax.cpp) | Segment Tree Lazy (Max) | $\mathcal{O}(\log N)$ cho Range Update/Query | $\mathcal{O}(4N)$ | • Cộng giá trị vào đoạn $[L, R]$ và tìm giá trị lớn nhất trên đoạn $[L, R]$. |
-| [`SparseTable.cpp`](./Cau_Truc_Du_Lieu/SparseTable.cpp) | Bảng thưa (Sparse Table) | Tiền xử lý $\mathcal{O}(N \log N)$<br>Truy vấn $\mathcal{O}(1)$ | $\mathcal{O}(N \log N)$ | • Mảng tĩnh (không cập nhật). Cần truy vấn Min/Max/GCD đoạn với thời gian siêu tốc $\mathcal{O}(1)$. |
-| [`PST.cpp`](./Cau_Truc_Du_Lieu/PST.cpp) | Persistent Segment Tree | Mỗi update: $\mathcal{O}(\log N)$<br>Truy vấn lịch sử: $\mathcal{O}(\log N)$ | $\mathcal{O}(N \log N)$ | • Tìm **phần tử nhỏ thứ $k$ (K-th smallest)** trên đoạn $[L, R]$.<br>• Đếm số phần tử trong khoảng $[x, y]$ nằm trên đoạn $[L, R]$.<br>• Truy vấn trên các phiên bản lịch sử. |
-| [`Mo_algorithm.cpp`](./Cau_Truc_Du_Lieu/Mo_algorithm.cpp) | Thuật toán Mo (Mo with Updates) | $\mathcal{O}(N^{5/3})$ hoặc $\mathcal{O}(Q \sqrt{N})$ | $\mathcal{O}(N + Q)$ | • Xử lý offline $Q$ truy vấn đoạn đếm số phần tử phân biệt, tần số xuất hiện khi không thể dùng Segment Tree. |
-| [`MonoStack.cpp`](./Cau_Truc_Du_Lieu/MonoStack.cpp) | Monotonic Stack | $\mathcal{O}(N)$ | $\mathcal{O}(N)$ | • Tìm phần tử gần nhất lớn hơn/nhỏ hơn bên trái/phải.<br>• Tìm hình chữ nhật lớn nhất trong biểu đồ cột (Histogram). |
+| [`Fenwick_BIT.cpp`](./SpareTable%20SegmentTree%20FenWick/Fenwick_BIT.cpp) | Fenwick Tree (BIT) cơ bản | Cập nhật điểm: $\mathcal{O}(\log N)$<br>Truy vấn tổng: $\mathcal{O}(\log N)$ | $\mathcal{O}(N)$ | • Tính tổng tiền tố, đếm số nghịch thế (Inversions) trong mảng.<br>• Tiết kiệm bộ nhớ gấp 4 lần và cài đặt nhanh gấp 3 lần Segment Tree. |
+| [`BITLazy.cpp`](./SpareTable%20SegmentTree%20FenWick/BITLazy.cpp) | Fenwick Range Update Range Query | $\mathcal{O}(\log N)$ cho cả update & query | $\mathcal{O}(N)$ | • Cộng giá trị vào đoạn $[L, R]$ và tính tổng đoạn $[L, R]$ với bộ nhớ cực nhẹ. |
+| [`SegmentTree.cpp`](./SpareTable%20SegmentTree%20FenWick/SegmentTree.cpp) | Segment Tree cơ bản | $\mathcal{O}(\log N)$ cho update/query | $\mathcal{O}(4N)$ | • Cập nhật giá trị 1 phần tử và truy vấn Max/Min/Sum/GCD trên đoạn $[L, R]$. |
+| [`SegmentTreelazy.cpp`](./SpareTable%20SegmentTree%20FenWick/SegmentTreelazy.cpp) | Segment Tree Lazy (Tổng) | $\mathcal{O}(\log N)$ cho Range Update/Query | $\mathcal{O}(4N)$ | • Cộng giá trị vào đoạn $[L, R]$ và tính tổng đoạn $[L, R]$. |
+| [`STLazyMax.cpp`](./SpareTable%20SegmentTree%20FenWick/STLazyMax.cpp) | Segment Tree Lazy (Max) | $\mathcal{O}(\log N)$ cho Range Update/Query | $\mathcal{O}(4N)$ | • Cộng giá trị vào đoạn $[L, R]$ và tìm giá trị lớn nhất trên đoạn $[L, R]$. |
+| [`SparseTable.cpp`](./SpareTable%20SegmentTree%20FenWick/SparseTable.cpp) | Bảng thưa (Sparse Table) | Tiền xử lý $\mathcal{O}(N \log N)$<br>Truy vấn $\mathcal{O}(1)$ | $\mathcal{O}(N \log N)$ | • Mảng tĩnh (không cập nhật). Cần truy vấn Min/Max/GCD đoạn với thời gian siêu tốc $\mathcal{O}(1)$. |
+| [`PST.cpp`](./SpareTable%20SegmentTree%20FenWick/PST.cpp) | Persistent Segment Tree | Mỗi update: $\mathcal{O}(\log N)$<br>Truy vấn lịch sử: $\mathcal{O}(\log N)$ | $\mathcal{O}(N \log N)$ | • Tìm **phần tử nhỏ thứ $k$ (K-th smallest)** trên đoạn $[L, R]$.<br>• Đếm số phần tử trong khoảng $[x, y]$ nằm trên đoạn $[L, R]$.<br>• Truy vấn trên các phiên bản lịch sử. |
+| [`Mo_algorithm.cpp`](./SpareTable%20SegmentTree%20FenWick/Mo_algorithm.cpp) | Thuật toán Mo (Mo with Updates) | $\mathcal{O}(N^{5/3})$ hoặc $\mathcal{O}(Q \sqrt{N})$ | $\mathcal{O}(N + Q)$ | • Xử lý offline $Q$ truy vấn đoạn đếm số phần tử phân biệt, tần số xuất hiện khi không thể dùng Segment Tree. |
+| [`MonoStack.cpp`](./SpareTable%20SegmentTree%20FenWick/MonoStack.cpp) | Monotonic Stack | $\mathcal{O}(N)$ | $\mathcal{O}(N)$ | • Tìm phần tử gần nhất lớn hơn/nhỏ hơn bên trái/phải.<br>• Tìm hình chữ nhật lớn nhất trong biểu đồ cột (Histogram). |
 
 ---
 
@@ -104,14 +104,14 @@ Kho lưu trữ toàn diện các thuật toán và cấu trúc dữ liệu kinh 
 
 ---
 
-## 7. Quy Hoạch Động
+## 7. Quy Hoạch Động (Dp_bitmask)
 
-📂 **Thư mục:** [`./Quy_Hoach_Dong`](./Quy_Hoach_Dong/README.md)
+📂 **Thư mục:** [`./Dp_bitmask`](./Dp_bitmask/README.md)
 
 | File mã nguồn | Bài toán | Độ phức tạp thời gian | Bộ nhớ | Khi nào nên dùng & Dấu hiệu bài toán |
 | :--- | :--- | :--- | :--- | :--- |
-| [`Vidu-DPBitmask.cpp`](./Quy_Hoach_Dong/Vidu-DPBitmask.cpp) | DP Bitmask (QBSELECT) | $\mathcal{O}(N \cdot 4^K)$ với $K=4$ | $\mathcal{O}(N \cdot 2^K)$ | • Quy hoạch động trên lưới có 1 chiều rất nhỏ ($K \le 4-15$), nén trạng thái các ô được chọn thành mặt nạ nhị phân (Bitmask). |
-| [`Vidu-TSP.cpp`](./Quy_Hoach_Dong/Vidu-TSP.cpp) | Người du lịch (TSP) | $\mathcal{O}(N^2 \cdot 2^N)$ | $\mathcal{O}(N \cdot 2^N)$ | • Tìm hành trình đi qua tất cả các thành phố đúng 1 lần với chi phí nhỏ nhất khi $N \le 20$. |
+| [`Vidu-DPBitmask.cpp`](./Dp_bitmask/Vidu-DPBitmask.cpp) | DP Bitmask (QBSELECT) | $\mathcal{O}(N \cdot 4^K)$ với $K=4$ | $\mathcal{O}(N \cdot 2^K)$ | • Quy hoạch động trên lưới có 1 chiều rất nhỏ ($K \le 4-15$), nén trạng thái các ô được chọn thành mặt nạ nhị phân (Bitmask). |
+| [`Vidu-TSP.cpp`](./Dp_bitmask/Vidu-TSP.cpp) | Người du lịch (TSP) | $\mathcal{O}(N^2 \cdot 2^N)$ | $\mathcal{O}(N \cdot 2^N)$ | • Tìm hành trình đi qua tất cả các thành phố đúng 1 lần với chi phí nhỏ nhất khi $N \le 20$. |
 
 ---
 
